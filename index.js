@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
+const path = require("path");
 const chalk = require("chalk");
 const walk = require("walk");
 const { Confirm, MultiSelect, Select } = require("enquirer");
@@ -22,15 +23,15 @@ const options = {
 
 function recursivelyFindServices() {
   const walker = walk.walk(".", options);
-  console.log("Scanning folders for packages...");
+  console.log("Searching through directories for node services...");
 
   walker.on("file", function (root, stat, next) {
     if (stat.name === "package.json") {
       folders.push(root);
       console.log(root);
       const dirPath = root;
-      const path = root + "/" + stat.name;
-      const fileData = JSON.parse(fs.readFileSync(path, "utf8"));
+      const filePath = root + "/" + stat.name;
+      const fileData = JSON.parse(fs.readFileSync(filePath, "utf8"));
       const name = fileData.name;
       const startScripts = Object.keys(fileData.scripts).filter((name) => {
         if (name.includes("start")) {
@@ -88,7 +89,7 @@ var askQuestion = function (i) {
       commandsString += `"cd ${service.dirPath} && npm run ${service.command}" `;
     });
     fs.writeFileSync(
-      "previousCommands.json",
+      path.join(__dirname, "previousCommands.json"),
       JSON.stringify({ mostRecent: commandsString })
     );
     shell.exec(`concurrently ${commandsString}`);
@@ -96,9 +97,9 @@ var askQuestion = function (i) {
 };
 
 try {
-  if (fs.existsSync("./previousCommands.json")) {
+  if (fs.existsSync(path.join(__dirname, "previousCommands.json"))) {
     const { mostRecent } = JSON.parse(
-      fs.readFileSync("./previousCommands.json")
+      fs.readFileSync(path.join(__dirname, "previousCommands.json"))
     );
     const prompt = new Confirm({
       name: "question",
