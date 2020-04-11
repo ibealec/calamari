@@ -1,0 +1,34 @@
+{
+  "name": "node-calamari",
+  "version": "1.0.0",
+  "description": "This bite-sized package helps you get your microservices up and running quickly.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "enquirer": "^2.3.5",
+    "shelljs": "^0.8.3",
+    "walk": "^2.3.14"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibealec/calamari.git"
+  },
+  "author": "ibealec",
+  "license": "MIT",
+  "bin": {
+    "calamari": "index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/ibealec/calamari/issues"
+  },
+  "homepage": "https://github.com/ibealec/calamari#readme"
+}
