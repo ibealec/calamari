@@ -74,7 +74,7 @@ var askQuestion = function (i) {
   if (i < selectedServices.length) {
     const prompt = new Select({
       name: "value",
-      message: `Which script do you want to run for`,
+      message: `Which script do you want to run for ${selectedServices[i].name}?`,
       choices: [...selectedServices[i].startScripts],
     });
     i++;
