@@ -12,6 +12,18 @@ console.log = function (...args) {
   return oldLog(chalk.green(args));
 };
 
+if (process.argv[2]) {
+  let commandsString = ``;
+  process.argv.slice(2).forEach((service) => {
+    commandsString += `"cd ${service.dirPath} && npm run ${service.command}" `;
+  });
+  fs.writeFileSync(
+    path.join(__dirname, "previousCommands.json"),
+    JSON.stringify({ mostRecent: commandsString })
+  );
+  shell.exec(`concurrently ${commandsString}`);
+}
+
 const folders = [];
 const files = [];
 

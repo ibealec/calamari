@@ -1,1 +1,1 @@
-{"mostRecent":""}
+{"mostRecent":"\"cd ./services/restapi && npm run start:dev\" \"cd ./services/organization && npm run start:dev\" "}

@@ -1,6 +1,6 @@
 {
   "name": "node-calamari",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "This bite-sized package helps you get your microservices up and running quickly.",
   "main": "index.js",
   "directories": {
